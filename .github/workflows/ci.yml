@@ -8,6 +8,9 @@ on:
     branches:
       - main
 
+env:
+  DATABASE_URL: postgresql://0k6sis:<YOUR_API_KEY>@us-west-2.sql.xata.sh/my-restaurant:main?sslmode=require
+
 jobs:
   build:
     runs-on: ubuntu-latest
