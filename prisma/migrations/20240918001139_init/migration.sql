@@ -1,0 +1,5 @@
+-- AlterTable
+ALTER TABLE "Post" ALTER COLUMN "city" SET DEFAULT '',
+ALTER COLUMN "description" SET DEFAULT '',
+ALTER COLUMN "images" SET DEFAULT ARRAY['']::TEXT[],
+ALTER COLUMN "rating" SET DEFAULT 0;

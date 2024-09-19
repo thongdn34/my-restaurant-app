@@ -1,0 +1,61 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+model Post {
+    id          String   @id @default(uuid()) // Primary key with UUID
+    rating      Float // Represents the rating (e.g., 4.2)
+    ratingCount Int // Represents the number of ratings
+    category    String // Restaurant category (e.g., YAKITORI)
+    city        String // City where the restaurant is located
+    description String // Description of the restaurant
+    images      String[] // Relation to Image model
+    name        String // Restaurant name
+    priceRange  String // Price range (e.g., "3~5")
+    isFavorite  Boolean // Whether the restaurant is marked as a favorite
+    featuredId  String // Foreign key for Feature
+    createdAt   DateTime @default(now())
+    updatedAt   DateTime @updatedAt
+    featured    Featured @relation(fields: [featuredId], references: [id])
+
+    @@index([name])
+}
+
+model Featured {
+    id          String @id @default(uuid()) // Primary key for Feature
+    text        String // Text for the feature (e.g., "나카노시마×야키토리 상위 맛집")
+    icon        String // Icon for the feature (e.g., "stars-02")
+    restaurants Post[]
+}
+
+enum STORE_CATEGORY {
+    SUSHI
+    UNAGI
+    TEMPURA
+    TONKATSU
+    YAKITORI
+    SUKIYAKI
+    SOBA
+    RAMEN
+    YAKISOBA
+    OKONOMIYAKI
+    DONBURI
+    ODEN
+    KAISEKI
+    HAMBAGU
+    TEPPANYAKI
+    CURRY
+    YAKINIKU
+    NABE
+    CAFE
+    IZAKAYA
+    OTHER
+}
