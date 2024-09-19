@@ -1,5 +1,5 @@
 import { api } from "~/utils/api";
-import { RestaurantList } from "./components/RestaurantList";
+import RestaurantList from "./components/RestaurantList";
 import CategoryFilter from "./components/CategoryFilter";
 import { useState } from "react";
 import SearchInput from "./components/SearchInput";

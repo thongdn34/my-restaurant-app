@@ -1,21 +1,22 @@
-import Image from "next/image";
 import React from "react";
-import { type Restaurant } from "~/pages/types";
+import Image from "next/image";
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination } from "swiper/modules";
 import "swiper/css/bundle";
 import HeartIcon from "../Icons/HeartIcon";
 import HeartOutlIneWhiteIcon from "../Icons/HeartOutlIneWhiteIcon";
+import { Restaurant } from "../RestaurantList";
 
 interface RestaurantItemProp {
   restaurant: Restaurant;
   onFavoriteToggle?: (id: string, isFavorite: boolean) => void;
 }
 
-export const RestaurantItem: React.FC<RestaurantItemProp> = ({
+const RestaurantItem: React.FC<RestaurantItemProp> = ({
   restaurant,
   onFavoriteToggle,
 }) => {
+  if (!restaurant) return null
   const { images, name, isFavorite, description, rating, id } = restaurant;
   return (
     <div className="overflow-hidden rounded-lg bg-white shadow-md">
@@ -28,7 +29,7 @@ export const RestaurantItem: React.FC<RestaurantItemProp> = ({
           slidesPerView={1}
           className="h-full"
         >
-          {images.map((image, index) => (
+          {images?.map((image, index) => (
             <SwiperSlide key={index}>
               <Image
                 src={image}
@@ -83,3 +84,5 @@ export const RestaurantItem: React.FC<RestaurantItemProp> = ({
     </div>
   );
 };
+
+export default RestaurantItem

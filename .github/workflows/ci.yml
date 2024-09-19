@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      # Step 1: Checkout the repository
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      # Step 2: Set up Node.js
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20' # You can change this to the version your project uses
+
+      # Step 3: Install dependencies
+      - name: Install dependencies
+        run: npm install
+
+      # Step 4: Run TypeScript type checking
+      - name: Run TypeScript type checking
+        run: npm run typecheck
+        # Ensure you have a script like "typecheck": "tsc --noEmit" in package.json
+
+      # Step 5: Run Linter
+      - name: Run Linter
+        run: npm run lint
+        # Ensure you have a script like "lint": "eslint ." in package.json
