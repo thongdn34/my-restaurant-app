@@ -41,8 +41,7 @@ export default function Home() {
   }
 
   return (
-    <div>
-      <h1 className="mb-6 text-3xl font-bold text-gray-800">Restaurants</h1>
+    <div className="container mx-auto py-4">
       <SearchInput searchTerm={searchTerm} setSearchTerm={setSearchTerm} />
       <CategoryFilter
         selectedCategory={selectedCategory}

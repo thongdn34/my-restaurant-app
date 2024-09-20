@@ -11,7 +11,7 @@ const SearchInput: React.FC<SearchInputProps> = ({
   setSearchTerm,
 }) => {
   return (
-    <div className="relative mb-6 w-full max-w-md">
+    <div className="relative mb-6 w-full">
       <span className="absolute inset-y-0 left-0 flex items-center pl-3">
         <SearchIcon />
       </span>
